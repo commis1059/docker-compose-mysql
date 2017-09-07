@@ -1,0 +1,16 @@
+version: "3.2"
+
+volumes:
+  mysql:
+    driver: local
+
+services:
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - ./etc/mysql/conf.d:/etc/mysql/conf.d
+      - ./etc/mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+      - mysql:/var/lib/mysql
+    ports:
+      - "13306:3306"
+    env_file: .env
